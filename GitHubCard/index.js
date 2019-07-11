@@ -55,6 +55,57 @@ const followersArray = [];
 
 */
 
+function card (objects){
+  // This create card div
+  var cardDiv = document.createElement("div");
+  cardDiv.classList.add("card");
+
+  // This creates Images
+  var gitImgs = document.createElement("div");
+  gitImgs.src= "";
+  card.Div.appendChild(gitImgs);
+
+  // This creates info for card div
+  var cardInfoDiv = document.createElement("div");
+  cardInfoDiv.classList.add("card-info");
+  cardDiv.appendChild(cardInfoDiv);
+
+  // H3 for Card Div
+  var h3 = document.createElement("div");
+  h3.classList.add("name");
+  cardInfoDiv.appendChild(h3);
+
+  // GitHub Username Line
+  var gitName = document.createElement("p");
+  gitName.classList.add("username");
+  cardInfoDiv.appendChild(gitName);
+
+  // User's Location
+  var userLocation = document.createElement("p");
+  cardInfoDiv.appendChild(userLocation);
+
+  // User Profile Link
+  var profileLink = document.createElement("p");
+  var a = document.createElement("a");
+  a.textContent = "";
+  a.href = "";
+  profileLink.appendChild("a");
+  cardInfoDiv.appendChild(profileLink);
+
+  // User's Following Count
+  var userFollowing = document.createElement("p");
+  cardInfoDiv.appendChild(userFollowing);
+
+  // User's Follower Count
+  var userFollowers = document.createElement("p");
+  cardInfoDiv.appendChild(userFollowers);
+
+  // User's Bio
+  var userBio = document.createElement("p");
+  cardInfoDiv.appendChild(userBio);
+  
+}
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
