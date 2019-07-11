@@ -3,14 +3,20 @@
            https://api.github.com/users/<your name>
 */
 
-axios
+const data = axios
   .get("https://api.github.com/users/realwillbrooks", {})
   .then(response => {
-    console.log("data", response.data);
+    const info = response.data;
+    const holder = [];
+    holder.push(info);
+    holder.forEach(data => {
+      card(data);
+    });
   })
- .catch(e => {
-   console.log("error", e);
- });
+  .catch(e => {
+    console.log("error", e);
+  });
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -23,6 +29,9 @@ axios
            create a new component and add it to the DOM as a child of .cards
 */
 
+const newComponent = document.createElement("main");
+const cards = document.querySelector(".cards");
+
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
@@ -33,7 +42,15 @@ axios
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ["noahfranco", "eoji", "yourmobilegeek", "shelbydiamond"];
+
+followersArray.forEach((element) => {
+  axios.get(`https://api.github.com/users/${element}`)
+  .then(data => {
+
+    console.log("Willy's Github, data");
+  })
+})
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -55,15 +72,15 @@ const followersArray = [];
 
 */
 
-function card (objects){
+function card (data){
   // This create card div
   var cardDiv = document.createElement("div");
   cardDiv.classList.add("card");
 
   // This creates Images
-  var gitImgs = document.createElement("div");
-  gitImgs.src= "";
-  card.Div.appendChild(gitImgs);
+  var gitImgs = document.createElement("img");
+  gitImgs.src= data.avatar_url;
+  cardDiv.appendChild(gitImgs);
 
   // This creates info for card div
   var cardInfoDiv = document.createElement("div");
@@ -74,36 +91,44 @@ function card (objects){
   var h3 = document.createElement("div");
   h3.classList.add("name");
   cardInfoDiv.appendChild(h3);
+  h3.textContent = data.name;
 
   // GitHub Username Line
   var gitName = document.createElement("p");
+  gitName.textContent = data.login;
   gitName.classList.add("username");
   cardInfoDiv.appendChild(gitName);
 
   // User's Location
   var userLocation = document.createElement("p");
   cardInfoDiv.appendChild(userLocation);
+  userLocation.textContent = `Location : ${data.location}`;
 
   // User Profile Link
   var profileLink = document.createElement("p");
-  var a = document.createElement("a");
-  a.textContent = "";
-  a.href = "";
-  profileLink.appendChild("a");
+  var link = document.createElement("a");
+  profileLink.textContent = `Link : ${data.html_url}`;
+  link.href = data.html_url;
+  link.append(profileLink);
   cardInfoDiv.appendChild(profileLink);
 
   // User's Following Count
   var userFollowing = document.createElement("p");
+  userFollowing.textContent = `Following : ${data.following}`;
   cardInfoDiv.appendChild(userFollowing);
 
   // User's Follower Count
   var userFollowers = document.createElement("p");
+  userFollowers.textContent = `Followers : ${data.followers}`; 
   cardInfoDiv.appendChild(userFollowers);
 
   // User's Bio
   var userBio = document.createElement("p");
   cardInfoDiv.appendChild(userBio);
-  
+  userBio.textContent = `Bio : ${data.bio}`;
+ 
+  cards.appendChild(cardDiv);
+
 }
 
 /* List of LS Instructors Github username's: 
