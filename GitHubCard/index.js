@@ -13,8 +13,8 @@ const data = axios
       card(data);
     });
   })
-  .catch(e => {
-    console.log("error", e);
+  .catch(error => {
+    console.log("error", error);
   });
 
 
@@ -42,35 +42,40 @@ const cards = document.querySelector(".cards");
           user, and adding that card to the DOM.
 */
 
-const followersArray = ["noahfranco", "eoji", "yourmobilegeek", "shelbydiamond"];
-
-followersArray.forEach((element) => {
-  axios.get(`https://api.github.com/users/${element}`)
-  .then(data => {
-
-    console.log("Willy's Github, data");
+axios
+  .get("https://api.github.com/users/realwillbrooks/followers")
+  .then(response => {
+    const followersArray = [];
+    const res = response.data;
+    const holder = [];
+    res.forEach(follower => {
+      card(follower);
+    });
   })
-})
+.catch(error => console.log("error", error));
 
-/* Step 3: Create a function that accepts a single object as its only argument,
-          Using DOM methods and properties, create a component that will return the following DOM element:
 
-<div class="card">
-  <img src={image url of user} />
-  <div class="card-info">
-    <h3 class="name">{users name}</h3>
-    <p class="username">{users user name}</p>
-    <p>Location: {users location}</p>
-    <p>Profile:  
-      <a href={address to users github page}>{address to users github page}</a>
-    </p>
-    <p>Followers: {users followers count}</p>
-    <p>Following: {users following count}</p>
-    <p>Bio: {users bio}</p>
-  </div>
-</div>
+// Step 3: Create a function that accepts a single object as its only argument,
+          // Using DOM methods and properties, create a component that will return the following DOM element:
 
-*/
+
+      
+// <div class="card">
+//   <img src={image url of user} />
+//   <div class="card-info">
+//     <h3 class="name">{users name}</h3>
+//     <p class="username">{users user name}</p>
+//     <p>Location: {users location}</p>
+//     <p>Profile:  
+//       <a href={address to users github page}>{address to users github page}</a>
+//     </p>
+//     <p>Followers: {users followers count}</p>
+//     <p>Following: {users following count}</p>
+//     <p>Bio: {users bio}</p>
+//   </div>
+// </div>
+
+
 
 function card (data){
   // This create card div
@@ -126,7 +131,7 @@ function card (data){
   var userBio = document.createElement("p");
   cardInfoDiv.appendChild(userBio);
   userBio.textContent = `Bio : ${data.bio}`;
- 
+
   cards.appendChild(cardDiv);
 
 }
