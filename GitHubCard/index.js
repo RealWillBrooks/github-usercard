@@ -4,7 +4,7 @@
 */
 
 const data = axios
-  .get("https://api.github.com/users/realwillbrooks", {})
+  .get("https://api.github.com/users/realwillbrooks",)
   .then(response => {
     const info = response.data;
     const holder = [];
