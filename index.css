@@ -51,7 +51,7 @@ table {
 /* Reset above, our CSS below */
 
 html, body, * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'montserrat';
   box-sizing: border-box;
 }
 
@@ -59,7 +59,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  background: linear-gradient(141deg, gold 10%, crimson 41%, rebeccapurple 75%);
 }
 .container {
   max-width: 800px;
@@ -95,17 +95,20 @@ body {
   width: 100%;
   padding: 20px;
   display: flex;
-  border-radius: 5px;
-  box-shadow: 0 1px 6px -2px #000;
-  background-color: #FFF;
+  border-radius: 20px;
+  border: 2px solid white;
+  box-shadow: 0 1px 50px -2px white;
+  /* background-color: */
   margin-bottom: 30px;
+  color: white;
 }
 
 .card img {
   width: 150px;
   height: 150px;
-  border-radius: 3px;
+  border-radius: 20px;
   margin-right: 20px;
+  border: 2px solid white;
 }
 
 .card .name {
@@ -121,6 +124,7 @@ body {
   font-size: 1.8rem;
   font-style: italic;
   margin: 3px 0 10px;
+  
 }
 
 
